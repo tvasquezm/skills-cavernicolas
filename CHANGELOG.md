@@ -3,6 +3,7 @@
 Formato: versión por skill. Subir la versión en `metadata.version` del `SKILL.md` en cada cambio.
 
 ## cave-planificacion
+- 1.6.0 — `continuidad` incorpora la recepción de CONTEXTO VERIFICADO (`cave-mapa`), DEPS (`cave-deps`) y DOCS (`cave-docs`). `modo-plan` indica que el contexto de `cave-mapa` se pega tal cual.
 - 1.5.0 — `continuidad` incorpora la recepción de HALLAZGOS (`cave-seguridad`) y PRUEBAS (`cave-pruebas`). El formato CIERRE tiene una sola fuente (`cave-codeo`); `modo-plan` solo lista los campos.
 - 1.4.0 — versión inicial del repositorio.
 
@@ -18,4 +19,13 @@ Formato: versión por skill. Subir la versión en `metadata.version` del `SKILL.
 - 1.0.0 — versión inicial.
 
 ## cave-release
+- 1.0.0 — versión inicial.
+
+## cave-mapa
+- 1.0.0 — versión inicial.
+
+## cave-deps
+- 1.0.0 — versión inicial.
+
+## cave-docs
 - 1.0.0 — versión inicial.

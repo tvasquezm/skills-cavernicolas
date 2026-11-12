@@ -1,6 +1,6 @@
 # SPIKE, retomar y bloques recibidos
 
-Leer ante "¿se puede...?", al retomar, o al recibir un CIERRE de `cave-codeo`, un HALLAZGOS de `cave-seguridad` o un bloque PRUEBAS de `cave-pruebas`.
+Leer ante "¿se puede...?", al retomar, o al recibir un CIERRE de `cave-codeo`, un HALLAZGOS de `cave-seguridad`, un bloque PRUEBAS de `cave-pruebas`, un CONTEXTO VERIFICADO de `cave-mapa`, un DEPS de `cave-deps` o un DOCS de `cave-docs`.
 
 ## SPIKE
 `Respuesta: sí | no | depende - evidencia - costo estimado`. Se responde leyendo el proyecto o la documentación; esta skill no ejecuta pruebas. Si hace falta ejecutar algo, se redacta como microplan de una prueba descartable para `cave-codeo`.
@@ -49,3 +49,27 @@ Formato recibido: bloque `PRUEBAS - <proyecto>` (Alcance, Archivos de prueba, Ca
 4. Los archivos de prueba nuevos se registran en el plan como entregados (en `Toca` o `Contratos`, solo si otra fase los consume). `Pendientes`, a Estado.
 5. Actualiza `Último avance`, `Siguiente paso exacto` y `Cola`, con edición puntual.
 Si el bloque contradice el plan de forma que cambia el alcance, no lo absorbas: señálalo y pide decisión.
+
+## Al recibir CONTEXTO VERIFICADO (`cave-mapa`)
+Formato recibido: bloque `CONTEXTO VERIFICADO - <proyecto>` (Stack, Estructura, Entradas, Comandos, Receta de verificación, Variables, Convenciones, Pruebas existentes, Documentación, Git, Notas de riesgo, Por verificar).
+1. Pégalo tal cual en `## 2. Contexto verificado` de `PLAN_APROBADO.md` (o en el microplan si no hay plan global). Conserva las marcas `[conf: ...]` y `[por verificar]`.
+2. Lo `confirmado` es verdad; lo `por verificar` se comprueba en solo lectura antes de que un microplan dependa de ello.
+3. Si ya había contexto, fusiona con edición puntual: lo nuevo y confirmado manda. No dupliques.
+4. `Notas de riesgo` y `Por verificar` pasan a pendientes del Estado; `Comandos` y `Receta` alimentan la `Verificación` de cada microplan.
+5. Si `DOCUMENTACION.md` no existe y el proyecto lo necesita, regístralo como fase o pendiente (`/cave-docs init`), sin absorberlo en otra fase.
+
+## Al recibir DEPS (`cave-deps`)
+Formato recibido: bloque `DEPS - <proyecto>` (Motivo, Línea base, Actualizados, Sin actualizar, Verificación, Transitivas, Rupturas, Avisos, Reversión, Pendientes).
+1. `Verificación` con algo `omitida` o `fallida`: queda `ejecutado, por verificar` y el comando pasa a `Verificación pendiente` del Estado.
+2. `Rupturas` son cambios de código que la actualización exige y no se hicieron. Cada una pasa a microplan para `cave-codeo` (o a pendiente), con el comando que la reproduce como verificación. No la absorbas en otra fase.
+3. `Sin actualizar` y `Pendientes` van a Estado. Un `major` aplazado es una decisión: regístrala en la tabla D.
+4. Si el motivo era `S-<n>`, el cierre es `/cave-pruebas` y una reauditoría con `/cave-seguridad`; no se da por resuelto sin ella.
+5. `Aprendido` sobre el entorno (versión de runtime, gestor) se promueve a `2. Contexto verificado`. Actualiza `Último avance`, `Siguiente paso exacto` y `Cola`, con edición puntual.
+
+## Al recibir DOCS (`cave-docs`)
+Formato recibido: bloque `DOCS - <proyecto>` (Modo, Índice, Documentos, Verificación, Desfases, Por verificar, Pendientes).
+1. `Verificación` omitida o fallida: `ejecutado, por verificar`, igual que con un CIERRE.
+2. `Desfases`: la doc dice una cosa y el código otra. Decide cuál es la correcta antes de planear: si el error está en el código, microplan para `cave-codeo`; si está en la doc, pendiente para `cave-docs sync`. No lo resuelvas por intuición.
+3. Tras `init`, anota en `2. Contexto verificado`: `DOCUMENTACION.md existe` con su ruta. Los documentos `por crear` pasan a pendientes.
+4. Una fase que cambia comandos, variables, contratos o esquema declara en `Verificación` o `Pendientes` el `sync` de documentación que le corresponde, según las reglas de `DOCUMENTACION.md`.
+5. Actualiza `Último avance`, `Siguiente paso exacto` y `Cola`, con edición puntual.

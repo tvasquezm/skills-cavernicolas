@@ -40,7 +40,7 @@ Pendientes fuera de alcance: ninguno | - ... (riesgo si aplica)
 Para qué se hace y qué valor da | resultado final observable | incluye | fuera | no aprobado.
 
 ## 2. Contexto verificado
-Stack y versiones relevantes, qué existe hoy relacionado, convenciones a respetar. **Cómo se corre y se prueba** (comandos reales) y la **receta de verificación en el entorno de trabajo** (instalación, generación de clientes, variables) para que ninguna fase quede sin probar. Cada dato: `confirmado` o `por verificar`.
+Stack y versiones relevantes, qué existe hoy relacionado, convenciones a respetar. **Cómo se corre y se prueba** (comandos reales) y la **receta de verificación en el entorno de trabajo** (instalación, generación de clientes, variables) para que ninguna fase quede sin probar. Cada dato: `confirmado` o `por verificar`. Si viene de `cave-mapa`, se pega tal cual su bloque `CONTEXTO VERIFICADO` (ver `continuidad`).
 
 ## 3. Requisitos de origen
 R1 | texto original en una línea | fuente | fase
