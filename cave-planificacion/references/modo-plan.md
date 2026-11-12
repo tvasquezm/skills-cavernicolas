@@ -79,14 +79,7 @@ Verifica: criterio -> comando y resultado esperado.
 Riesgo y reversión: ...
 
 ## CIERRE (se llena al cerrar)
-Fecha:
-Hecho: qué quedó funcionando
-Contratos reales: nombres, rutas, firmas y formatos exactos que quedaron
-Desvíos del plan: ninguno | qué se hizo distinto y por qué
-Decisiones nuevas: ninguna | decisión - por qué
-Verificación: ejecutada: comando -> resultado | fallida: ... | omitida: motivo + comando local
-Aprendido del entorno: nada | qué hizo falta para poder probar
-Pendientes: ninguno | - A (incluye lo encontrado fuera de alcance)
+(Se pega tal cual el bloque que entrega `cave-codeo` con `/chk`. Fuente del formato: `cave-codeo`. Campos: Fecha, Hecho, Contratos reales, Desvíos del plan, Decisiones nuevas, Verificación, Aprendido del entorno, Pendientes. No los renombres ni agregues otros.)
 ```
 
 ## Cómo escribir cada fase

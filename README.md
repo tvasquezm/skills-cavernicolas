@@ -4,11 +4,28 @@ Skills de Claude para trabajo en Claude Web Projects. Este repositorio es la ún
 
 | Skill | Versión | Para qué sirve | Activación |
 |---|---|---|---|
-| cave-planificacion | 1.4.0 | Analiza y entrega un plan o microplan aprobable. No toca código. | `/cave-planificacion` |
-| cave-codeo | 1.6.0 | Implementa y verifica solo lo aprobado, cambio mínimo. | `/cave-codeo` |
-| cave-seguridad | (pendiente) | Auditoría de seguridad y privacidad, solo lectura. | `/cave-seguridad` |
+| cave-planificacion | 1.5.0 | Analiza y entrega un plan o microplan aprobable. Recibe CIERRE, HALLAZGOS y PRUEBAS. No toca código. | `/cave-planificacion` |
+| cave-codeo | 1.6.1 | Implementa y verifica solo lo aprobado, cambio mínimo. | `/cave-codeo` |
+| cave-pruebas | 1.0.0 | Escribe y ejecuta pruebas sobre código existente, sin tocar producción. | `/cave-pruebas` |
+| cave-seguridad | 1.0.1 | Auditoría de seguridad y privacidad, solo lectura. | `/cave-seguridad` |
+| cave-release | 1.0.0 | Versión, changelog y comandos de commit, tag y push. No publica. | `/cave-release` |
 
-Flujo: planificación → codeo → seguridad (puerta final antes de commit o PR). Cada paso va en un chat separado.
+## Flujo
+
+planificación → codeo → pruebas → seguridad → release. Cada paso va en un chat separado.
+
+- Lo que `cave-codeo` entrega (CIERRE), `cave-pruebas` (PRUEBAS) y `cave-seguridad` (HALLAZGOS) se pega en `/cave-planificacion`, que lo convierte en el siguiente microplan.
+- Con veredicto `BLOQUEADO` de `cave-seguridad` no se llega a `cave-release`.
+- Tras corregir hallazgos, se reaudita con `/cave-seguridad`.
+
+## Formatos compartidos entre skills
+
+Cada skill se sube sola a Claude, así que algunos textos viven en dos sitios. Al editar uno, editar el otro:
+
+| Texto | Fuente | Copia |
+|---|---|---|
+| Formato del bloque CIERRE | `cave-codeo/references/cierre.md` | lista de campos en `cave-planificacion/references/modo-plan.md` |
+| `reglas-stack.md` (idéntico) | `cave-codeo/references/` | `cave-planificacion/references/` |
 
 ## Actualizar una skill en Claude web
 

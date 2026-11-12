@@ -3,7 +3,7 @@
 Señala indicios técnicos, no da asesoría legal: la conclusión jurídica la confirma un abogado o el responsable de datos. Las normas cambian: con web, verifica el estado vigente antes de citar fechas y registra la fecha de consulta.
 
 ## Marco aplicable (según usuarios y datos)
-- **Chile:** Ley 19.628 (vigente hoy) y Ley 21.719, que la reemplaza y crea la Agencia de Protección de Datos Personales. Su artículo primero transitorio fija la vigencia el 1 de diciembre de 2026, pero hay un proyecto que la posterga al 15 de octubre de 2027, aprobado por el Senado el 28 de octubre de 2026 y pendiente en la Cámara. Verifica siempre si ya fue publicado antes de afirmar la fecha. Ley 21.663 (marco de ciberseguridad) si el proyecto es de un servicio esencial u operador de importancia vital. Ley 21.459 (delitos informáticos) como contexto.
+- **Chile:** Ley 19.628 y Ley 21.719, que la reemplaza y crea la Agencia de Protección de Datos Personales. La fecha de entrada en vigencia de la 21.719 ha estado sujeta a cambios y a proyectos que la posponen: no cites una fecha de memoria. Con web, consulta el estado vigente (texto publicado y vigencia) y registra fuente y fecha en `Cobertura`; sin web, di que la vigencia está `por verificar`. Ley 21.663 (marco de ciberseguridad) si el proyecto es de un servicio esencial u operador de importancia vital. Ley 21.459 (delitos informáticos) como contexto.
 - **UE o residentes UE:** GDPR. **California:** CCPA/CPRA. **Brasil:** LGPD. Solo si el proyecto tiene usuarios allí.
 
 ## Qué revisar en el código y la configuración

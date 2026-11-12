@@ -1,7 +1,7 @@
 ---
 name: cave-seguridad
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 description: "Auditoría de seguridad y privacidad de solo lectura para Claude Web Projects: revisa cambios o el proyecto completo (secretos, auth, autorización, entradas, dependencias, configuración, datos personales) y entrega un informe con severidad, evidencia y veredicto. No edita código. Activar con /cave-seguridad. Es la puerta final tras /cave-planificacion y /cave-codeo; las correcciones se planifican y ejecutan en esos chats."
 ---
 

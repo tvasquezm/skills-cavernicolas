@@ -15,7 +15,7 @@ Verificación: ejecutada: comando -> resultado | fallida: ... | omitida: motivo 
 Aprendido del entorno: nada | qué hizo falta para poder probar
 Pendientes: ninguno | - A (incluye lo encontrado fuera de alcance)
 ```
-Los campos son los de `## CIERRE` de la fase: no renombres ni agregues otros. Con algo omitido o fallido, la fase queda `ejecutada, por verificar`; no la presentes como cerrada.
+Este bloque es la única fuente del formato CIERRE: `cave-planificacion` lo pega tal cual en `## CIERRE` de la fase. No renombres ni agregues campos. Si el formato cambia, se cambia aquí y se actualiza la lista de campos de `modo-plan` en `cave-planificacion` (solo nombres). Con algo omitido o fallido, la fase queda `ejecutada, por verificar`; no la presentes como cerrada.
 
 ## Al llegar un plan o un CIERRE
 Úsalo como contexto mínimo junto con el microplan aprobado; no pidas ni resumas el plan completo. Antes de apoyarte en un Contrato que consumes, compruébalo con grep. Si difiere: una frase con la diferencia; detente solo si bloquea.

@@ -1,7 +1,7 @@
 ---
 name: cave-codeo
 metadata:
-  version: "1.6.0"
+  version: "1.6.1"
 description: "Codeo de bajo consumo para Claude Web Projects: cambios mínimos dentro del alcance aprobado, verificación real y cierre solo con acciones locales requeridas. Activar con /cave-codeo. El plan se hace antes, en un chat con /cave-planificacion."
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: cave-planificacion
 metadata:
-  version: "1.4.0"
+  version: "1.5.0"
 description: "Planificación y análisis para Claude Web Projects: analiza requisitos, dependencias, riesgos y pruebas y entrega un plan o microplan aprobable; no implementa ni modifica código. Activar con /cave-planificacion. La ejecución va en un chat aparte con /cave-codeo."
 ---
 
@@ -55,5 +55,5 @@ Válida cuando el usuario responde `aprobado` (o equivalente claro) sobre ese mi
 
 ## Qué leer (`references/*.md`, solo si aplica)
 - Plan global de varias fases, detallar o actualizar el plan: `modo-plan`
-- "¿Se puede...?", retomar, o recibir un CIERRE de `cave-codeo`: `continuidad`
+- "¿Se puede...?", retomar, o recibir un CIERRE de `cave-codeo`, un HALLAZGOS de `cave-seguridad` o un bloque PRUEBAS de `cave-pruebas`: `continuidad`
 - El plan toca migraciones o variables de entorno: `reglas-stack`
