@@ -29,3 +29,9 @@ Formato: versión por skill. Subir la versión en `metadata.version` del `SKILL.
 
 ## cave-docs
 - 1.0.0 — versión inicial.
+
+## cave-diseno
+- 1.0.0 — versión inicial. Selector opcional de skills de diseño, fuera del flujo.
+
+## diseno (20 skills incorporadas)
+- 1.0.0 — se incorporan en `diseno/`: banner-design, brand, brandkit, design, design-system, design-taste-frontend, full-output-enforcement, gpt-taste, high-end-visual-design, image-to-code, imagegen-frontend-mobile, imagegen-frontend-web, impeccable (4.5.0), industrial-brutalist-ui, minimalist-ui, redesign-existing-projects, slides, stitch-design-taste, ui-styling, ui-ux-pro-max. Se agrega `metadata.version: "1.0.0"` a las 13 que no tenían. `build.sh` empaqueta también `diseno/*`.

@@ -12,6 +12,16 @@ Skills de Claude para trabajo en Claude Web Projects. Este repositorio es la ún
 | cave-deps | 1.0.0 | Actualiza dependencias por grupos, solo manifiestos y lockfiles, con línea base y reversión. | `/cave-deps` |
 | cave-docs | 1.0.0 | Crea `DOCUMENTACION.md` (convención y mapa de docs) y sincroniza la documentación tras cada cambio. | `/cave-docs` |
 | cave-release | 1.0.0 | Versión, changelog y comandos de commit, tag y push. No publica. | `/cave-release` |
+| cave-diseno | 1.0.0 | Opcional, fuera del flujo. Elige la skill de `diseno/` que corresponde a la tarea y fija una sola dirección visual. | `/cave-diseno` |
+
+## Skills de diseño (opcionales, fuera del flujo)
+
+Viven en `diseno/` (una carpeta por skill, nombre sin cambios). No son un paso del flujo `cave-*`: se usan solo cuando la tarea tiene diseño, y `/cave-diseno` ayuda a elegir cuál. Origen, licencias y cuáles funcionan en chat: `diseno/MANIFIESTO.md`. `./build.sh` las empaqueta junto con las `cave-*` en `dist/<skill>.zip`; también `./build.sh impeccable`.
+
+- Instalar por defecto: `impeccable`, `ui-ux-pro-max`, `design-taste-frontend`, `redesign-existing-projects`, `full-output-enforcement`.
+- Solo si la tarea lo pide: `minimalist-ui`, `high-end-visual-design`, `industrial-brutalist-ui`, `gpt-taste`, `stitch-design-taste`, `design-system`, `ui-styling`.
+- Parciales en chat (necesitan generador de imágenes, APIs o red): `brandkit`, `image-to-code`, `imagegen-frontend-web`, `imagegen-frontend-mobile`, `design`, `brand`, `banner-design`, `slides`.
+- Están en inglés. Las que no traían `metadata.version` quedaron en `1.0.0`; `impeccable` conserva su `version: 4.5.0` de origen.
 
 ## Flujo
 
