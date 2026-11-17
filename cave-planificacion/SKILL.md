@@ -1,8 +1,8 @@
 ---
 name: cave-planificacion
 metadata:
-  version: "1.6.0"
-description: "Planificación y análisis para Claude Web Projects: analiza requisitos, dependencias, riesgos y pruebas y entrega un plan o microplan aprobable; no implementa ni modifica código. Activar con /cave-planificacion. La ejecución va en un chat aparte con /cave-codeo."
+  version: "1.7.0"
+description: "Planificación y análisis para Claude Web Projects: analiza requisitos, dependencias, riesgos y pruebas y entrega un plan o microplan aprobable; no implementa ni modifica código. Activar con /cave-planificacion. La ejecución va en un chat aparte con /cave-codeo, o con otro agente de código si el plan se genera para él."
 ---
 
 # CAVE PLANIFICACIÓN
@@ -18,12 +18,17 @@ Planificar, analizar, priorizar y preparar decisiones. **No programar ni ejecuta
 - No ampliar el alcance ni arreglar problemas encontrados: registrarlos como pendientes.
 - No asumir que algo existe: distinguir `confirmado`, `por verificar` y `supuesto`.
 - No reinterpretar un requisito en silencio. Si el plan lo entiende distinto de su texto original, pregunta antes (una sola pregunta).
+- Citar el código por nombre (ruta completa de archivo, función, componente, selector CSS o texto literal) con su `grep`; nunca por número de línea, porque cambia. Se verifica con `/cave-anclas`.
 
 ## Planes de varias fases
 - El plan es la fuente de verdad y debe permitir que cualquier chat retome sin preguntar. Estructura, archivos y reglas: `modo-plan`.
 - Lee primero ESTADO ACTUAL; luego solo la fase en curso y los Contratos que consume. No releas fases cerradas ni reproduzcas el plan entero.
 - Conserva IDs, decisiones y nombres exactos. Una contradicción se señala, no se resuelve por intuición.
 - El plan refleja siempre la realidad vigente: si el alcance cambia, se edita la fase y se anota en el Historial. Nunca "texto original vs real".
+- Una sola fuente: `PLAN_APROBADO.md`. Lo demás (plan para otro agente, documento de revisión del equipo) se genera de él y no se edita aparte.
+
+## Fase ejecutable
+Una fase `completo` tiene: Qué observable; Cómo en pasos numerados con anclas por nombre; Toca con rutas completas; No hacer; Verifica con comandos y resultado esperado; y a lo sumo una decisión de diseño sin resolver. Se parte si supera ~10 archivos, tiene más de una entrega verificable por separado o más de una decisión sin resolver. Lo que no cumple es `esbozo` y no pasa a ejecución.
 
 ## Flujo
 1. Objetivo y criterio verificable de terminado.
@@ -57,3 +62,5 @@ Válida cuando el usuario responde `aprobado` (o equivalente claro) sobre ese mi
 - Plan global de varias fases, detallar o actualizar el plan: `modo-plan`
 - "¿Se puede...?", retomar, o recibir un CIERRE de `cave-codeo`, un HALLAZGOS de `cave-seguridad`, un bloque PRUEBAS de `cave-pruebas`, un CONTEXTO VERIFICADO de `cave-mapa`, un DEPS de `cave-deps` o un DOCS de `cave-docs`: `continuidad`
 - El plan toca migraciones o variables de entorno: `reglas-stack`
+- El plan lo ejecutará otro agente de código (Codex u otro) y no `cave-codeo`: `para-agente`
+- Otras personas deben revisar los cambios antes de ejecutarlos, o llegan sus comentarios: `revision-equipo`

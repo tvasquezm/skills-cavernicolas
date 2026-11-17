@@ -1,6 +1,6 @@
 # SPIKE, retomar y bloques recibidos
 
-Leer ante "¿se puede...?", al retomar, o al recibir un CIERRE de `cave-codeo`, un HALLAZGOS de `cave-seguridad`, un bloque PRUEBAS de `cave-pruebas`, un CONTEXTO VERIFICADO de `cave-mapa`, un DEPS de `cave-deps` o un DOCS de `cave-docs`.
+Leer ante "¿se puede...?", al retomar, o al recibir un CIERRE de `cave-codeo`, un HALLAZGOS de `cave-seguridad`, un bloque PRUEBAS de `cave-pruebas`, un CONTEXTO VERIFICADO de `cave-mapa`, un DEPS de `cave-deps` o un DOCS de `cave-docs`, o comentarios de un equipo sobre un documento de revisión (`revision-equipo`).
 
 ## SPIKE
 `Respuesta: sí | no | depende - evidencia - costo estimado`. Se responde leyendo el proyecto o la documentación; esta skill no ejecuta pruebas. Si hace falta ejecutar algo, se redacta como microplan de una prueba descartable para `cave-codeo`.
@@ -30,6 +30,12 @@ Siguiente: microplan de F<id>
 6. `Pendientes` y `Decisiones nuevas`: llévalos a Estado y a la tabla D.
 7. Actualiza `Último avance`, `Siguiente paso exacto` y `Cola`. Reentrega solo los archivos tocados, con edición puntual.
 Si un CIERRE contradice el plan de forma que cambia el alcance, no lo absorbas: señálalo y pide decisión.
+
+## Al recibir un CIERRE de otro agente
+Formato: Estado, Archivos tocados, Comandos y resultado, Cambios respecto al plan, Pendientes y dudas (ver `para-agente`). Trátalo como un CIERRE: mismos pasos de arriba. Los archivos tocados se comparan con el `Toca` de la fase: uno de más es un desvío y se señala. `docs/fases/DUDAS.md` y `APROBACIONES_PENDIENTES.md` se leen siempre; cada duda pasa a Decisiones abiertas o a una corrección del plan.
+
+## Al recibir comentarios del equipo
+Sigue `revision-equipo` (sección "Al recibir comentarios"). Cada comentario se asigna a un punto; los cambios se editan en el requisito y la fase y se registran en Historial; el plan para otro agente se regenera.
 
 ## Al recibir HALLAZGOS (`cave-seguridad`)
 Formato recibido: `S-<n> | severidad | título | archivos | corrección | verificación`. Es entrada para planificar: no se corrige aquí.

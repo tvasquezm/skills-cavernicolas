@@ -13,6 +13,7 @@ El plan es lo único que sobrevive entre chats. Junto con el código debe bastar
 - `FASE_<id>.md`: una por fase, con su plan y su CIERRE. Se lee solo la fase en curso y los Contratos de las que consume. Plan chico (hasta 3 fases): las fases van dentro de `PLAN_APROBADO.md`.
 - **IDs estables:** `R1..` requisitos, `D1..` decisiones, `F<id>` fases. No se reutilizan ni se renombran; los microplans los citan en vez de repetir texto. El orden de ejecución vive en `Cola`, no en el ID.
 - **Entrega:** se crean como archivos descargables con `Documento: borrador`. En el chat, solo un resumen de máximo 5 líneas (fases y decisiones abiertas) y la pregunta de aprobación. Al aprobar: `Documento: aprobado` con edición puntual, sin regenerar. Sin poder crear archivos: un bloque `md` por archivo. El usuario los sube al Project y reemplaza los anteriores. Van aparte del repo, sin valores de `.env` ni claves.
+- **Derivados:** el plan para otro agente (`para-agente`) y el documento de revisión del equipo (`revision-equipo`) se generan de este plan, nunca al revés ni en paralelo. Si el plan cambia, se regeneran.
 
 ## PLAN_APROBADO.md
 ```
@@ -45,6 +46,7 @@ Stack y versiones relevantes, qué existe hoy relacionado, convenciones a respet
 ## 3. Requisitos de origen
 R1 | texto original en una línea | fuente | fase
 (Es la referencia contra la que se valida lo que se entiende. Sin esta tabla, un requisito mal leído nadie lo detecta.)
+Si la fuente es una prueba de usabilidad o una auditoría, agrega `Hallazgos contra el plan`: Hallazgo | estado (cubierto, parcial, no cubierto, contradice) | evidencia | R | fase. Lo que `contradice` se señala; no se resuelve por intuición.
 
 ## 4. Decisiones transversales
 D1 | decisión | descartado | por qué | costo si está mal
@@ -57,6 +59,9 @@ Amenaza | control | verificación; env vars nuevas (solo nombres); migraciones. 
 
 ## 7. Historial
 Fecha | qué cambió | por qué | quién lo aprobó
+
+## 8. Textos nuevos de interfaz
+Texto literal | dónde se muestra | estado: por aprobar | aprobado. Todo texto nuevo que verá el usuario vive aquí; las fases lo citan.
 ```
 
 ## FASE_<id>.md
@@ -73,7 +78,7 @@ Qué: resultado observable al terminar (comportamiento, no archivos).
 Cómo: enfoque concreto (ver abajo).
 Decisiones: D.. | nuevas: elegido X sobre Y porque Z.
 Contratos: Consume (exacto) | Produce (exacto)
-Toca: áreas o módulos; rutas solo si son necesarias.
+Toca: archivos con ruta completa, o módulos; cada cita por nombre y nunca por número de línea.
 No hacer: límites de la fase.
 Verifica: criterio -> comando y resultado esperado.
 Riesgo y reversión: ...
@@ -87,13 +92,15 @@ Riesgo y reversión: ...
 - **Cómo:** detalle suficiente para implementar sin volver a decidir: flujo paso a paso, reglas de negocio y validación, estructuras y contratos exactos, orden de operaciones, casos borde y errores, qué se reutiliza. Sin código ni pseudocódigo extenso.
 - **Contratos:** nombres, firmas, rutas o formatos exactos, tomados del código o de un CIERRE, nunca de memoria. `Produce:` = `nombreExacto(params): tipo`.
 - **Entrega:** si una fase deja el sistema inconsistente hasta que otra llegue (por ejemplo un backend que rechaza al frontend viejo), se declara aquí.
-- **Esbozo:** solo Qué y Requisitos. Antes de su microplan, esta skill la detalla leyendo el código (solo lectura), completa y marca `completo`; si el detalle cambia alcance o tamaño, lo dice y pide aprobación. Una fase en esbozo no se ejecuta.
+- **Anclas:** cada referencia al código es un nombre (ruta completa, función, componente, selector CSS, texto literal) con su `grep`. Si el nombre coincide con varios archivos, se cita la ruta completa. Se verifica con `/cave-anclas`.
+- **F0 de entorno:** todo plan que ejecuta código empieza con una fase que comprueba, sin cambiar nada, la versión del runtime que exige el proyecto, el gestor de paquetes, la instalación, la compilación, las pruebas y el navegador de pruebas. Si falta algo, se detiene y lo dice. Ninguna otra fase corre antes.
+- **Esbozo:** solo Qué y Requisitos. Si el destino es otro agente, no se entrega ningún esbozo. Antes de su microplan, esta skill la detalla leyendo el código (solo lectura), completa y marca `completo`; si el detalle cambia alcance o tamaño, lo dice y pide aprobación. Una fase en esbozo no se ejecuta.
 
 ## Antes de entregar el plan
-Cada requisito R tiene fase; cada fase `completo` tiene Qué, Cómo y Verifica; cada decisión tiene su porqué; lo que una fase consume coincide con lo que otra produce; ningún requisito está reinterpretado sin confirmar; la receta de verificación está probada o marcada `por verificar`; no hay archivos listados sin necesidad.
+Cada requisito R tiene fase; cada fase `completo` tiene Qué, Cómo y Verifica; cada decisión tiene su porqué; lo que una fase consume coincide con lo que otra produce; ningún requisito está reinterpretado sin confirmar; la receta de verificación está probada o marcada `por verificar`; no hay archivos listados sin necesidad; sin números de línea (`/cave-anclas` sin citas por línea ni ambiguas); los textos nuevos están en la sección 8; con hallazgos de origen, la tabla de cobertura existe; la F0 de entorno existe.
 
 ## Reglas
-- Una fase cabe en un chat (~10 archivos o ~500 líneas de diff como tope). Si crece al ejecutar, se divide.
+- Una fase cabe en un chat (~10 archivos o ~500 líneas de diff como tope). Si crece al ejecutar, se divide. Se divide antes de ejecutar si tiene más de una entrega verificable por separado o más de una decisión de diseño sin resolver.
 - Falta un dato que cambia el diseño: `Falta X.` y esperar; si se puede verificar en el código, verificarlo. Nunca un plan especulativo.
 - Aprobación parcial: solo lo aprobado pasa a ejecución; el resto queda pendiente y no se vuelve a preguntar.
 - Alcance que crece: va como pendiente o microplan nuevo, no se suma a lo aprobado. Un cambio de alcance se edita en la fase y se registra en el Historial en el mismo paso.
